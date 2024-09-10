@@ -1,0 +1,144 @@
+@import './base.css';
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+a {
+  color: #fff;
+  transition: 0.4s;
+  padding: 3px;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+}
+.container-wrap {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas: 'aside header' 'aside main';
+}
+.aside {
+  background-color: #43425D;
+  grid-area: aside;
+}
+.nav-item-link {
+  align-items: center;
+  border-left: 3px solid transparent;
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: 20px auto;
+  padding: 1rem 0.5rem 1rem 1.5rem;
+}
+.nav-item-link:hover {
+  border-left-color: #a3a0fb;
+}
+.nav-item-link:hover svg path {
+  fill: #a3a0fb
+}
+.nav-item-link.active {
+  border-left-color: #a3a0fb;
+}
+.nav-item-link svg {
+  height: auto;
+  width: 100%;
+}
+.logo {
+  background-color: #3c3b53;
+  font-size: 1.2rem;
+  padding: 1rem 0.5rem 1rem 1.5rem;
+}
+.logo-link {
+  text-transform: uppercase;
+}
+.header {
+  align-items: center;
+  background-color: #fff;
+  grid-area: header;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.header-right {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.search {
+}
+.search-form {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 30px auto;
+  column-gap: 10px;
+}
+.search-form-button {
+  background: url('../assets/icons/search-alt-svgrepo-com.svg') no-repeat center center / 24px auto;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+
+}
+.search-form-input {
+  border: none;
+}
+.search-form-input:focus {
+  outline: none;
+}
+.links {
+}
+.links-items {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  padding: 1rem;
+}
+.links-item {}
+.links-item-link {}
+.links-item-link svg{
+  width: 30px;
+  height: auto;
+}
+.account {
+}
+.account-link {
+  align-items: center;
+  display: grid;
+  grid-template-columns: max-content 40px;
+  padding: 1rem;
+  column-gap: 10px;
+  color: #3c3b53;
+  position: relative;
+}
+.account-link:before {
+  content: '';
+  height: 30px;
+  border-left: 1px solid #a5a4bf;
+  position: absolute;
+  left: 0;
+  top: calc(50% - 15px);
+}
+.account-name {
+  
+}
+.account-photo {
+  border-radius: 50%;
+  height: auto;
+  width: 100%;
+}
+.main {
+  background-color: #f0f0f7;
+  grid-area: main;
+  padding: 2rem;
+}
