@@ -54,8 +54,7 @@
         scheduler.config.month_day = "%j";
         scheduler.config.mark_now = true;
         
-        scheduler.locale.labels.prev = 'Back';
-        scheduler.locale.labels.next = 'Next';
+        scheduler.config.icons_select = [];
         scheduler.templates.event_header = function(start,end,ev){
             return ``;
         };
@@ -77,7 +76,7 @@
         scheduler.plugins({
             agenda_view: true
         });
-        console.log(scheduler)
+
         scheduler.attachEvent("onEventSave",function(id,ev){
 			if (!ev.text) {
 				scheduler.alert("event name must not be empty");
@@ -89,12 +88,37 @@
 			}
 			return true;
 		});
+
+        scheduler.form_blocks["my_input"]={
+            render:function(sns){
+                return "<div class='dhx_cal_lcolor' style='height:60px;'>" +
+                    "Event background color&nbsp;<input name='color' type='color' value='#3b86ff'></div>";
+            },
+            set_value:function(node,value,ev){
+                node.querySelector("[name='color']").value = value||"#3b86ff";
+            },
+            get_value:function(node,ev){
+                return node.querySelector("[name='color']").value;
+            },
+            focus:function(node){
+                var input = node.querySelector("[name='color']"); 
+                input.select(); 
+                input.focus(); 
+            }
+        };
+        
+        scheduler.locale.labels.section_description = "Details";
+       
         scheduler.config.lightbox.sections=[    
             { name:"event name", type:"textarea", map_to:"text", focus:true},
-            
             { name:"event time", type:"time", map_to:"time"}, 
-            { name:"notes", type:"textarea", map_to:"notes"}
+            { name:"notes", type:"textarea", map_to:"notes"},
+            { name:"color", map_to:"color", type:"my_input" , focus:true}
         ];
+ 
+        
+
+
         scheduler.init(this.$refs.cont, new Date(), "month");
         scheduler.parse(this.events);
         this.scheduler = scheduler;
@@ -122,6 +146,7 @@
         border-left: var(--dhx-scheduler-default-border);
     }
     .blue {
+        --dhx-scheduler-event-background: #3b86ff;
         border-radius: var(--dhx-scheduler-border-radius);
         background: var(--dhx-scheduler-event-background);
         color: var(--dhx-scheduler-event-color);
